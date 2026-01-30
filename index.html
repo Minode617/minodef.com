@@ -4,115 +4,243 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ミノデ不動産 | 地域密着 富士見町</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    .hero-bg {
-      background: linear-gradient(135deg, #1a365d 0%, #2d5a3d 50%, #1e4d2b 100%);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #37352f;
+      line-height: 1.8;
+      background: #fff;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 16px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero-icon {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .hero-tagline {
+      font-size: 14px;
+      color: #6b6b6b;
+      margin-bottom: 8px;
+    }
+    .hero-mission {
+      font-size: 18px;
+      color: #37352f;
+      margin-top: 32px;
+      padding: 24px;
+      background: #f7f6f3;
+      border-radius: 4px;
+    }
+
+    /* Section */
+    section {
+      padding: 48px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+    section h2 {
+      font-size: 12px;
+      font-weight: 400;
+      color: #9b9b9b;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    /* Services */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .service-item {
+      padding: 16px;
+      text-align: center;
+      font-size: 14px;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+    }
+
+    /* Message */
+    .message {
+      font-size: 16px;
+      color: #37352f;
+      line-height: 2;
+    }
+
+    /* Property */
+    .property-card {
+      display: block;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .property-card:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .property-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+    .property-info {
+      padding: 20px;
+    }
+    .property-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .property-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: #f7f6f3;
+      border-radius: 2px;
+    }
+    .property-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .property-address {
+      font-size: 13px;
+      color: #6b6b6b;
+      margin-bottom: 12px;
+    }
+    .property-price {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .property-price span {
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid #e5e5e5;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .footer-text {
+      font-size: 12px;
+      color: #9b9b9b;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; }
+      .services { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
-<body class="bg-slate-50">
+<body>
 
-  <!-- ヘッダー -->
-  <header class="bg-white shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-4">
-      <h1 class="text-xl font-bold text-slate-800">ミノデ不動産</h1>
+  <header>
+    <div class="container">
+      <div class="logo">MINODE REAL ESTATE</div>
     </div>
   </header>
 
-  <!-- ヒーロー -->
-  <section class="hero-bg text-white py-20 px-4">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-green-300 text-sm tracking-widest mb-4">地域密着</p>
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-relaxed">
-        美しい森と空<br>
-        この町にあふれる笑顔
-      </h2>
-      <p class="text-slate-300 text-lg mb-8">
-        あなたが住む家、探しましょう。繋げましょう。
-      </p>
-      <p class="text-slate-400 text-sm">長野県諏訪郡富士見町</p>
-    </div>
-  </section>
+  <div class="container">
 
-  <!-- サービス -->
-  <section class="py-16 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h3 class="text-center text-slate-600 text-sm tracking-widest mb-8">SERVICES</h3>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🏠</p>
-          <p class="font-medium text-slate-700">売買</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🔑</p>
-          <p class="font-medium text-slate-700">賃貸</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🔨</p>
-          <p class="font-medium text-slate-700">リノベーション</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🏡</p>
-          <p class="font-medium text-slate-700">中古物件</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🌾</p>
-          <p class="font-medium text-slate-700">農地</p>
-        </div>
-        <div class="bg-white rounded-lg p-6 text-center shadow-sm">
-          <p class="text-2xl mb-2">🌲</p>
-          <p class="font-medium text-slate-700">山林</p>
-        </div>
+    <div class="hero">
+      <div class="hero-icon">🏠</div>
+      <h1>ミノデ不動産</h1>
+      <p class="hero-tagline">地域密着 長野県富士見町</p>
+      <div class="hero-mission">
+        美しい森と空、この町にあふれる笑顔。<br>
+        未来を絶対に守るため。
       </div>
     </div>
-  </section>
 
-  <!-- メッセージ -->
-  <section class="bg-green-50 py-16 px-4">
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="text-green-800 text-lg leading-relaxed mb-6">
+    <section>
+      <h2>Services</h2>
+      <div class="services">
+        <div class="service-item">売買</div>
+        <div class="service-item">賃貸</div>
+        <div class="service-item">リノベーション</div>
+        <div class="service-item">中古物件</div>
+        <div class="service-item">農地</div>
+        <div class="service-item">山林</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Message</h2>
+      <p class="message">
         一人きりでは人は生きられない。<br>
-        君もこの町に暮らさないか。
+        君もこの町に暮らさないか。<br><br>
+        あなたが住む家、探しましょう。繋げましょう。<br>
+        すぐ呼びかけてください。
       </p>
-      <p class="text-green-700 text-sm">
-        すぐ呼びかけてください。地域密着ミノデ不動産。
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- 物件一覧 -->
-  <section class="py-16 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h3 class="text-center text-slate-600 text-sm tracking-widest mb-8">PROPERTIES</h3>
-
-      <a href="Property/4654/" class="block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition mb-4">
-        <div class="md:flex">
-          <div class="md:w-1/3">
-            <img src="Property/4654/image/exterior.jpg" alt="物件4654" class="w-full h-48 md:h-full object-cover">
+    <section>
+      <h2>Properties</h2>
+      <a href="Property/4654/" class="property-card">
+        <img src="Property/4654/image/exterior.jpg" alt="物件4654" class="property-image">
+        <div class="property-info">
+          <div class="property-tags">
+            <span class="property-tag">賃貸</span>
+            <span class="property-tag">一戸建て</span>
+            <span class="property-tag">DIY歓迎</span>
           </div>
-          <div class="p-6 md:w-2/3">
-            <div class="flex gap-2 mb-2">
-              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">賃貸</span>
-              <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded">一戸建て</span>
-              <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">DIY歓迎</span>
-            </div>
-            <h4 class="text-lg font-bold text-slate-800 mb-2">富士見駅徒歩8分 4DK+物置</h4>
-            <p class="text-sm text-slate-500 mb-3">長野県諏訪郡富士見町富士見4654-490</p>
-            <p class="text-2xl font-bold text-red-600">4<span class="text-base">万円/月</span></p>
-          </div>
+          <h3 class="property-title">富士見駅徒歩8分 4DK+物置</h3>
+          <p class="property-address">長野県諏訪郡富士見町富士見4654-490</p>
+          <p class="property-price">4万円<span>/月</span></p>
         </div>
       </a>
+    </section>
 
-    </div>
-  </section>
+  </div>
 
-  <!-- フッター -->
-  <footer class="bg-slate-800 text-white py-12 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-xl font-bold mb-2">ミノデ不動産</h2>
-      <p class="text-slate-400 text-sm mb-4">地域密着 富士見町</p>
-      <p class="text-slate-500 text-xs">長野県諏訪郡富士見町</p>
+  <footer>
+    <div class="container">
+      <p class="footer-logo">MINODE REAL ESTATE</p>
+      <p class="footer-text">地域密着 ミノデ不動産</p>
     </div>
   </footer>
 
