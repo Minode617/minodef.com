@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>バックヤードの仕組み | ミノデ不動産</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #37352f;
+      line-height: 1.8;
+      background: #fff;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 16px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #6b6b6b;
+    }
+
+    /* Section */
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+    h3:first-child {
+      margin-top: 0;
+    }
+    p {
+      margin-bottom: 16px;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Flow box */
+    .flow-box {
+      background: #f7f6f3;
+      border-radius: 4px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .flow-step:last-child {
+      margin-bottom: 0;
+    }
+    .flow-number {
+      background: #37352f;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .flow-content {
+      flex: 1;
+    }
+    .flow-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .flow-desc {
+      font-size: 14px;
+      color: #6b6b6b;
+    }
+
+    /* Arrow */
+    .arrow {
+      text-align: center;
+      color: #9b9b9b;
+      font-size: 20px;
+      margin: 8px 0;
+    }
+
+    /* Quote */
+    .quote {
+      background: #f7f6f3;
+      border-left: 3px solid #37352f;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 14px;
+      color: #6b6b6b;
+    }
+
+    /* Comparison */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .comparison-box {
+      padding: 20px;
+      border-radius: 4px;
+    }
+    .comparison-box.old {
+      background: #f7f6f3;
+    }
+    .comparison-box.new {
+      background: #e8f5e9;
+    }
+    .comparison-label {
+      font-size: 12px;
+      color: #9b9b9b;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .comparison-list {
+      list-style: none;
+      font-size: 14px;
+    }
+    .comparison-list li {
+      margin-bottom: 8px;
+    }
+    .comparison-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Data box */
+    .data-box {
+      background: #f7f6f3;
+      border-radius: 4px;
+      padding: 20px;
+      margin: 24px 0;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    /* Highlight */
+    .highlight {
+      background: #fff3e0;
+      padding: 20px;
+      border-radius: 4px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .highlight p {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    th {
+      font-weight: 400;
+      color: #9b9b9b;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Footer */
+    footer {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+    }
+    .footer-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .footer-text {
+      font-size: 14px;
+      color: #6b6b6b;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 22px; }
+      .comparison { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo">MINODE REAL ESTATE</div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>バックヤードの仕組み</h1>
+      <p>電話1本で物件ページが完成</p>
+    </div>
+
+    <section>
+      <h2>コンセプト</h2>
+      <p>パソコン操作は不要です。電話で物件のことを話すだけで、AIが情報を整理し、物件ページを自動で作成します。</p>
+
+      <div class="comparison">
+        <div class="comparison-box old">
+          <div class="comparison-label">従来の方法</div>
+          <ul class="comparison-list">
+            <li>書類を見ながらパソコンで入力</li>
+            <li>写真をアップロード</li>
+            <li>レイアウト調整</li>
+            <li>公開作業</li>
+            <li><strong>作業時間: 数時間</strong></li>
+          </ul>
+        </div>
+        <div class="comparison-box new">
+          <div class="comparison-label">ミノデ不動産</div>
+          <ul class="comparison-list">
+            <li>電話で話すだけ</li>
+            <li>AIが自動でまとめる</li>
+            <li>確認して公開</li>
+            <li>&nbsp;</li>
+            <li><strong>作業時間: 15分</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>情報入力の方法</h2>
+
+      <h3>方法1: 電話で話す</h3>
+      <div class="flow-box">
+        <div class="flow-step">
+          <div class="flow-number">1</div>
+          <div class="flow-content">
+            <div class="flow-title">美濃出（みので）に電話</div>
+            <div class="flow-desc">「この物件なんだけど...」と話し始めてください</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">2</div>
+          <div class="flow-content">
+            <div class="flow-title">通話を録音・文字起こし</div>
+            <div class="flow-desc">AIが自動で文字に変換します</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">3</div>
+          <div class="flow-content">
+            <div class="flow-title">AIが物件情報を整理</div>
+            <div class="flow-desc">住所、間取り、家賃、おすすめポイントなどを抽出</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">4</div>
+          <div class="flow-content">
+            <div class="flow-title">物件ページ自動生成</div>
+            <div class="flow-desc">確認後、すぐに公開できます</div>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>話す内容の例：</strong></p>
+      <div class="quote">
+        「富士見駅から歩いて8分くらいの一戸建てがあってね。4DKで家賃4万円。敷金礼金は4万ずつ。築60年くらいだけど、トイレとお風呂はリフォームしてある。DIYしたい人にはいいと思うよ。あ、駐車場は敷地内にないから、近くで借りる必要があるね。」
+      </div>
+      <p>これだけで物件ページの8割が完成します。</p>
+
+      <h3>方法2: 書類をアップロード</h3>
+      <div class="flow-box">
+        <div class="flow-step">
+          <div class="flow-number">1</div>
+          <div class="flow-content">
+            <div class="flow-title">スマホで写真を撮る</div>
+            <div class="flow-desc">登記簿、図面、物件写真など</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">2</div>
+          <div class="flow-content">
+            <div class="flow-title">AIが自動で読み取り</div>
+            <div class="flow-desc">住所、面積、築年数、間取りなどを抽出</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">3</div>
+          <div class="flow-content">
+            <div class="flow-title">物件ページ自動生成</div>
+            <div class="flow-desc">電話での補足があればさらに充実</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>物件データの形式</h2>
+      <p>電話や書類から抽出された情報は、以下のような形式で整理されます。</p>
+
+      <div class="data-box">物件番号: 4654
+住所: 長野県諏訪郡富士見町富士見4654-490
+種別: 賃貸・一戸建て
+間取り: 4DK + 物置
+面積: 95.88㎡
+築年数: 63年
+構造: 木造平屋建て
+
+賃料: 40,000円/月
+敷金: 40,000円
+礼金: 40,000円
+
+最寄駅: 富士見駅 徒歩8分
+駐車場: なし（近隣 月2,000円）
+
+特徴:
+- トイレ・お風呂リフォーム済み
+- DIY歓迎
+- ペット相談可</div>
+
+      <p>このデータがあれば、物件ページは自動で作成できます。</p>
+    </section>
+
+    <section>
+      <h2>60代以上の方にとってのメリット</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>従来</th>
+            <th>ミノデ不動産</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>パソコン操作が必要</td>
+            <td>電話で話すだけ</td>
+          </tr>
+          <tr>
+            <td>入力項目を覚える</td>
+            <td>知っていることを話す</td>
+          </tr>
+          <tr>
+            <td>写真のアップロード</td>
+            <td>スマホで撮って送るだけ</td>
+          </tr>
+          <tr>
+            <td>レイアウト調整</td>
+            <td>自動でいい感じに</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight">
+        <p>「パソコンは苦手だけど、物件のことは詳しい」<br>その知識を、電話で話すだけで活かせます。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>次のステップ</h2>
+
+      <h3>1. 試しに1件やってみる</h3>
+      <p>細川さんの持っている物件を1つ選んで、電話で情報を教えてもらい、物件ページを作成してお見せします。</p>
+
+      <h3>2. 農地版も検討</h3>
+      <p>農地情報を地図にプロットし、「農地を探している人」と「使ってほしい農地を持っている人」をつなげる仕組みも作れます。</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p class="footer-name">美濃出（みので）</p>
+      <p class="footer-text">電話で物件情報を教えてください。<br>AIと一緒にページを作ります。</p>
+    </div>
+  </footer>
+
+</body>
+</html>
