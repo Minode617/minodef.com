@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件番号 4654 | ミノデ不動産</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .room-hover:hover { filter: brightness(0.92); }
+    .room-selected { stroke-width: 3px !important; stroke: #1565C0 !important; }
+    .fade-in { animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-overlay { background: rgba(0,0,0,0.8); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+
+  <!-- ヘッダー -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold text-slate-800">ミノデ不動産</h1>
+        <span class="text-sm text-slate-500">物件番号: 4654</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-6">
+
+    <!-- 物件タイトル -->
+    <div class="mb-6">
+      <div class="flex flex-wrap items-center gap-2 mb-2">
+        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">即入居可</span>
+        <span class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">DIY歓迎</span>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-800">富士見駅徒歩8分 一戸建て 4DK+物置</h2>
+      <p class="text-slate-600 mt-1">〒399-0211 長野県諏訪郡富士見町富士見4654-490</p>
+    </div>
+
+    <!-- メイン写真と地図 -->
+    <div class="grid md:grid-cols-2 gap-4 mb-6">
+      <div class="relative">
+        <img src="image/exterior.jpg" alt="外観" class="w-full h-72 md:h-80 object-cover object-center rounded-xl shadow-lg cursor-pointer hover:opacity-95 transition" onclick="openModal('image/exterior.jpg', '外観')" style="object-position: center center;">
+        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded">外観</span>
+      </div>
+      <div class="rounded-xl overflow-hidden shadow-lg h-72 md:h-80">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.5!2d138.2379339!3d35.9077398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c5ccb69758d19%3A0xbed23dc18d271438!2z44CSMzk5LTAyMTEg6ZW36YeO55yM6Ki%2F6Kiq6YOh5a-M5aOr6KaL55S65a-M5aOr6KaLNDY1NOKIkjQ5MA!5e0!3m2!1sja!2sjp!4v1706000000000"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- 賃料・基本情報 -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-red-50 rounded-lg">
+          <p class="text-sm text-slate-500">賃料</p>
+          <p class="text-3xl font-bold text-red-600">4<span class="text-lg">万円</span></p>
+        </div>
+        <div class="text-center p-4 bg-slate-50 rounded-lg">
+          <p class="text-sm text-slate-500">敷金/礼金</p>
+          <p class="text-2xl font-bold text-slate-800">各4万円</p>
+        </div>
+        <div class="text-center p-4 bg-slate-50 rounded-lg">
+          <p class="text-sm text-slate-500">間取り</p>
+          <p class="text-2xl font-bold text-slate-800">4DK</p>
+        </div>
+        <div class="text-center p-4 bg-slate-50 rounded-lg">
+          <p class="text-sm text-slate-500">専有面積</p>
+          <p class="text-2xl font-bold text-slate-800">95.88<span class="text-sm">㎡</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 間取り図セクション -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-800 mb-2">間取り図</h3>
+      <p class="text-sm text-slate-500 mb-4">各部屋をクリックすると写真が表示されます</p>
+
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- 間取り図 SVG -->
+        <div class="flex-1 overflow-auto">
+          <svg viewBox="0 0 330 180" class="w-full h-auto min-w-[330px]" id="floorplan">
+            <rect x="15" y="15" width="290" height="145" fill="none" stroke="#37474F" stroke-width="4"/>
+
+            <!-- 洋室 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('youshitsu')">
+              <rect id="room-youshitsu" x="20" y="20" width="70" height="55" fill="#E8F5E9" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="55" y="50" text-anchor="middle" font-size="10" font-weight="600" fill="#37474F">洋室</text>
+            </g>
+
+            <!-- 床の間 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('tokonoma')">
+              <rect id="room-tokonoma" x="90" y="20" width="70" height="25" fill="#FCE4EC" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="125" y="36" text-anchor="middle" font-size="8" font-weight="600" fill="#37474F">床の間</text>
+            </g>
+
+            <!-- 和室2 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('washitsu2')">
+              <rect id="room-washitsu2" x="90" y="45" width="70" height="55" fill="#C8E6C9" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="125" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#37474F">和室2</text>
+            </g>
+
+            <!-- 和室3 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('washitsu3')">
+              <rect id="room-washitsu3" x="90" y="100" width="70" height="55" fill="#A5D6A7" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="125" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#37474F">和室3</text>
+            </g>
+
+            <!-- トイレ -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('toilet')">
+              <rect id="room-toilet" x="160" y="20" width="50" height="25" fill="#E3F2FD" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="185" y="36" text-anchor="middle" font-size="7" font-weight="600" fill="#37474F">トイレ</text>
+            </g>
+
+            <!-- 押入 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('oshiire')">
+              <rect id="room-oshiire" x="160" y="45" width="50" height="25" fill="#FFF3E0" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="185" y="61" text-anchor="middle" font-size="7" font-weight="600" fill="#37474F">押入</text>
+            </g>
+
+            <!-- 廊下（縦） -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('rouka')">
+              <rect id="room-rouka" x="210" y="20" width="20" height="50" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="220" y="48" text-anchor="middle" font-size="5" font-weight="600" fill="#37474F">廊下</text>
+            </g>
+
+            <!-- 和室1 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('washitsu1')">
+              <rect id="room-washitsu1" x="160" y="70" width="70" height="55" fill="#C8E6C9" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="195" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#37474F">和室1</text>
+            </g>
+
+            <!-- 脱衣所 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('datsuijo')">
+              <rect id="room-datsuijo" x="230" y="20" width="25" height="30" fill="#E1F5FE" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="242" y="38" text-anchor="middle" font-size="5" font-weight="600" fill="#37474F">脱衣所</text>
+            </g>
+
+            <!-- 風呂 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('furo')">
+              <rect id="room-furo" x="255" y="20" width="45" height="30" fill="#81D4FA" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="277" y="38" text-anchor="middle" font-size="7" font-weight="600" fill="#37474F">風呂</text>
+            </g>
+
+            <!-- キッチン -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('kitchen')">
+              <rect id="room-kitchen" x="230" y="50" width="70" height="40" fill="#FFF9C4" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="265" y="73" text-anchor="middle" font-size="8" font-weight="600" fill="#37474F">キッチン</text>
+            </g>
+
+            <!-- 玄関 -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('genkan')">
+              <rect id="room-genkan" x="230" y="90" width="35" height="65" fill="#D7CCC8" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="247" y="125" text-anchor="middle" font-size="7" font-weight="600" fill="#37474F">玄関</text>
+            </g>
+
+            <!-- 小物置き -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('komonooki')">
+              <rect id="room-komonooki" x="265" y="90" width="35" height="65" fill="#FFCC80" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="282" y="120" text-anchor="middle" font-size="5" font-weight="600" fill="#37474F">小物</text>
+              <text x="282" y="130" text-anchor="middle" font-size="5" font-weight="600" fill="#37474F">置き</text>
+            </g>
+
+            <!-- 廊下（横） -->
+            <g class="cursor-pointer room-hover" onclick="selectRoom('rouka')">
+              <rect id="room-rouka2" x="160" y="125" width="70" height="30" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" rx="1"/>
+              <text x="195" y="143" text-anchor="middle" font-size="7" font-weight="600" fill="#37474F">廊下</text>
+            </g>
+
+            <!-- 玄関矢印 -->
+            <line x1="247" y1="155" x2="247" y2="165" stroke="#37474F" stroke-width="2"/>
+            <polygon points="247,168 243,162 251,162" fill="#37474F"/>
+
+            <!-- 方位 -->
+            <g transform="translate(290, 140)">
+              <circle r="12" fill="white" stroke="#78909C" stroke-width="1"/>
+              <g transform="rotate(-15)">
+                <polygon points="0,-8 -2.5,-1 2.5,-1" fill="#E53935"/>
+                <polygon points="0,8 -2.5,1 2.5,1" fill="#455A64"/>
+                <text y="-2" text-anchor="middle" font-size="5" font-weight="bold" fill="#E53935">N</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 選択した部屋の情報 -->
+        <div class="lg:w-80 bg-slate-50 rounded-xl p-5" id="room-info">
+          <div class="text-center py-8">
+            <div class="text-5xl mb-4">🏠</div>
+            <p class="text-slate-400">部屋をクリックすると<br>写真と詳細が表示されます</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 凡例 -->
+      <div class="mt-4 pt-4 border-t border-slate-200">
+        <div class="flex flex-wrap justify-center gap-4">
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#A5D6A7"></div><span class="text-xs text-slate-600">和室（8畳）</span></div>
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#E8F5E9"></div><span class="text-xs text-slate-600">洋室</span></div>
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#FFF9C4"></div><span class="text-xs text-slate-600">キッチン</span></div>
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#81D4FA"></div><span class="text-xs text-slate-600">水回り</span></div>
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#FFF3E0"></div><span class="text-xs text-slate-600">収納</span></div>
+          <div class="flex items-center gap-2"><div class="w-4 h-4 rounded" style="background:#D7CCC8"></div><span class="text-xs text-slate-600">玄関</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 物件詳細テーブル -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">物件詳細</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <table class="w-full text-sm">
+          <tr class="border-b"><td class="py-2 text-slate-500 w-28">賃料</td><td class="py-2 font-medium">4万円/月</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">敷金</td><td class="py-2">4万円</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">礼金</td><td class="py-2">4万円</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">更新料</td><td class="py-2">なし</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">契約期間</td><td class="py-2">2年</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">入居可能日</td><td class="py-2 text-green-600 font-medium">即日可</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">間取り</td><td class="py-2">4DK + 物置</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">専有面積</td><td class="py-2">95.88㎡</td></tr>
+        </table>
+        <table class="w-full text-sm">
+          <tr class="border-b"><td class="py-2 text-slate-500 w-28">土地面積</td><td class="py-2">259.9㎡</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">築年数</td><td class="py-2">63年</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">構造</td><td class="py-2">木造平屋建て</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">駐車場</td><td class="py-2">近隣 月2,000円</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">ガス</td><td class="py-2">プロパンガス</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">給湯</td><td class="py-2">灯油</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">エアコン</td><td class="py-2">なし</td></tr>
+          <tr class="border-b"><td class="py-2 text-slate-500">インターネット</td><td class="py-2">光回線引込可（要確認）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 相談可能事項 -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">相談可能事項</h3>
+      <div class="flex flex-wrap gap-3">
+        <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm">🐕 ペット相談可</span>
+        <span class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm">🎸 楽器相談可</span>
+        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm">💼 事務所利用相談可</span>
+        <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm">🔨 DIY歓迎</span>
+      </div>
+    </div>
+
+    <!-- アクセス -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">アクセス・周辺環境</h3>
+      <div class="space-y-2 text-sm">
+        <p>🚃 <strong>JR中央本線 富士見駅</strong> 徒歩8分</p>
+        <p>🛒 スーパー・商店街 徒歩圏内</p>
+        <p>🏥 富士見高原病院 徒歩圏内</p>
+      </div>
+    </div>
+
+    <!-- おすすめポイント -->
+    <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl shadow-lg p-6 mb-6 border border-amber-200">
+      <h3 class="text-lg font-bold text-amber-800 mb-4">✨ おすすめポイント</h3>
+      <ul class="space-y-2 text-sm text-slate-700">
+        <li>• 富士見駅周辺では珍しい<strong>賃貸一戸建て</strong>（平屋）</li>
+        <li>• <strong>トイレ・お風呂リフォーム済み</strong></li>
+        <li>• 一部<strong>内窓施工済み</strong></li>
+        <li>• <strong>DIY歓迎</strong>（事前に施工計画をご相談ください）</li>
+      </ul>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="bg-slate-100 rounded-xl p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-700 mb-4">⚠️ 注意事項</h3>
+      <ul class="space-y-2 text-sm text-slate-600">
+        <li>• 敷地内に駐車場はありません。物件から徒歩1分（約100m）の場所に月額2,000円で借りられます。</li>
+        <li>• 築63年のため、基本的に断熱性能は弱めです。</li>
+        <li>• DIYをご希望の場合は、事前に施工計画をご相談ください。</li>
+      </ul>
+    </div>
+
+    <!-- 写真ギャラリー -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+      <h3 class="text-lg font-bold text-slate-800 mb-4">写真ギャラリー</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="image/exterior.jpg" alt="外観" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/exterior.jpg', '外観')">
+        <img src="image/entrance.jpg" alt="玄関" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/entrance.jpg', '玄関')">
+        <img src="image/Kitchen.jpg" alt="キッチン" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/Kitchen.jpg', 'キッチン')">
+        <img src="image/洋室.jpg" alt="洋室" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/洋室.jpg', '洋室')">
+        <img src="image/Room1,2.jpg" alt="和室" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/Room1,2.jpg', '和室1・2')">
+        <img src="image/Bathroom.jpg" alt="浴室" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/Bathroom.jpg', '浴室')">
+        <img src="image/Toilet.jpg" alt="トイレ" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/Toilet.jpg', 'トイレ')">
+        <img src="image/4654間取り図.jpg" alt="間取り図" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition" onclick="openModal('image/4654間取り図.jpg', '間取り図')">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-slate-800 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-lg font-bold mb-2">ミノデ不動産</h2>
+      <p class="text-slate-400 text-sm">お問い合わせはお気軽にどうぞ</p>
+    </div>
+  </footer>
+
+  <!-- 画像モーダル -->
+  <div id="modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4" onclick="closeModal()">
+    <div class="max-w-4xl w-full">
+      <p id="modal-title" class="text-white text-center mb-2 text-lg font-medium"></p>
+      <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-lg">
+      <p class="text-white text-center mt-4 text-sm">クリックで閉じる</p>
+    </div>
+  </div>
+
+  <script>
+    // 部屋データ
+    const roomData = {
+      youshitsu: {
+        name: '洋室',
+        size: '約4.5畳',
+        features: '増築部分',
+        image: 'image/洋室.jpg'
+      },
+      tokonoma: {
+        name: '床の間',
+        size: '床の間',
+        features: '和室装飾',
+        image: null
+      },
+      washitsu1: {
+        name: '和室1',
+        size: '8畳',
+        features: '畳敷き',
+        image: 'image/Room1,2.jpg'
+      },
+      washitsu2: {
+        name: '和室2',
+        size: '8畳',
+        features: '畳敷き',
+        image: 'image/Room1,2.jpg'
+      },
+      washitsu3: {
+        name: '和室3',
+        size: '8畳',
+        features: '畳敷き',
+        image: 'image/Room1,2.jpg'
+      },
+      toilet: {
+        name: 'トイレ',
+        size: '約1畳',
+        features: '洋式トイレ（リフォーム済み）',
+        image: 'image/Toilet.jpg'
+      },
+      oshiire: {
+        name: '押入',
+        size: '収納',
+        features: '布団収納可',
+        image: null
+      },
+      rouka: {
+        name: '廊下',
+        size: '通路',
+        features: '各部屋への動線',
+        image: null
+      },
+      datsuijo: {
+        name: '脱衣所',
+        size: '約0.75畳',
+        features: '洗面台・洗濯機置場',
+        image: null
+      },
+      furo: {
+        name: '浴室',
+        size: '浴室',
+        features: 'ユニットバス（リフォーム済み）',
+        image: 'image/Bathroom.jpg'
+      },
+      kitchen: {
+        name: 'キッチン',
+        size: '約4畳',
+        features: 'システムキッチン',
+        image: 'image/Kitchen.jpg'
+      },
+      genkan: {
+        name: '玄関',
+        size: '約2畳',
+        features: '土間',
+        image: 'image/entrance.jpg'
+      },
+      komonooki: {
+        name: '小物置き',
+        size: '約2畳',
+        features: 'パントリー・収納',
+        image: null
+      }
+    };
+
+    let selectedRoomId = null;
+
+    function selectRoom(roomId) {
+      // 前の選択を解除
+      if (selectedRoomId) {
+        const prevRoom = document.getElementById('room-' + selectedRoomId);
+        if (prevRoom) prevRoom.classList.remove('room-selected');
+        const prevRoom2 = document.getElementById('room-' + selectedRoomId + '2');
+        if (prevRoom2) prevRoom2.classList.remove('room-selected');
+      }
+
+      // 新しい選択
+      selectedRoomId = roomId;
+      const room = document.getElementById('room-' + roomId);
+      if (room) room.classList.add('room-selected');
+
+      // 情報パネル更新
+      const data = roomData[roomId];
+      const infoPanel = document.getElementById('room-info');
+
+      let imageHtml = '';
+      if (data.image) {
+        imageHtml = `
+          <img src="${data.image}" alt="${data.name}"
+               class="w-full h-40 object-cover rounded-lg mb-4 cursor-pointer hover:opacity-90 transition"
+               onclick="openModal('${data.image}', '${data.name}')">
+        `;
+      } else {
+        imageHtml = `
+          <div class="w-full h-40 bg-slate-200 rounded-lg mb-4 flex items-center justify-center">
+            <span class="text-slate-400">写真なし</span>
+          </div>
+        `;
+      }
+
+      infoPanel.innerHTML = `
+        <div class="fade-in">
+          ${imageHtml}
+          <h4 class="text-xl font-bold text-slate-800 mb-3">${data.name}</h4>
+          <div class="space-y-2">
+            <div class="bg-white rounded-lg p-3">
+              <p class="text-xs text-slate-400 uppercase tracking-wide">広さ</p>
+              <p class="text-lg font-semibold text-slate-800">${data.size}</p>
+            </div>
+            <div class="bg-white rounded-lg p-3">
+              <p class="text-xs text-slate-400 uppercase tracking-wide">特徴</p>
+              <p class="font-medium text-slate-700">${data.features}</p>
+            </div>
+          </div>
+          ${data.image ? '<p class="text-xs text-slate-400 mt-3 text-center">写真をクリックで拡大</p>' : ''}
+        </div>
+      `;
+    }
+
+    function openModal(src, title) {
+      const modal = document.getElementById('modal');
+      const img = document.getElementById('modal-image');
+      const titleEl = document.getElementById('modal-title');
+
+      img.src = src;
+      titleEl.textContent = title;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ESCキーでモーダルを閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
